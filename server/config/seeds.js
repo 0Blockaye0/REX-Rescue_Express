@@ -1,10 +1,10 @@
 const db = require('./connection');
-const { User, Dog, Category } = require('../models');
+const { User, Dog, Size } = require('../models');
 
 db.once('open', async () => {
-  await Category.deleteMany();
+  await Size.deleteMany();
 
-  const categories = await Category.insertMany([
+  const size = await Size.insertMany([
     { size: 'Toy' },
     { size: 'Small' },
     { size: 'Medium' },
@@ -12,7 +12,7 @@ db.once('open', async () => {
     { size: 'Giant' }
   ]);
 
-  console.log('categories seeded');
+  console.log('size seeded');
 
   await Dog.deleteMany();
 
@@ -24,7 +24,7 @@ db.once('open', async () => {
       image: 'arrow.jpg',
       breed: 'Belgian Malinois',
       age: '2 years',
-      size: categories[3]._id,
+      size: size[3]._id,
     },
     {
       name: 'Chief',
@@ -33,7 +33,7 @@ db.once('open', async () => {
       image: 'chief.jpg',
       breed: 'German Shepherd',
       age: '8 years',
-      size: categories[3]._id,
+      size: size[3]._id,
     },
     {
       name: 'Echo',
@@ -42,7 +42,7 @@ db.once('open', async () => {
       image: 'echo.jpg',
       breed: 'German Shepherd',
       age: '5 years',
-      size: categories[3]._id,
+      size: size[3]._id,
     },
     {
       name: 'Camelot',
@@ -51,7 +51,7 @@ db.once('open', async () => {
       image: 'camelot.jpg',
       breed: 'Samoyed',
       age: '3 years',
-      size: categories[2]._id,
+      size: size[2]._id,
     },
     {
       name: 'Roux',
@@ -60,7 +60,7 @@ db.once('open', async () => {
       image: 'roux.jpg',
       breed: 'Corgi',
       age: '3 years',
-      size: categories[1]._id,
+      size: size[1]._id,
     },
     {
       name: 'Finn',
@@ -69,7 +69,7 @@ db.once('open', async () => {
       image: 'finn.jpg',
       breed: 'Mixed Breed',
       age: '6 years',
-      size: categories[2]._id,
+      size: size[2]._id,
     },
     {
       name: 'Bucky',
@@ -78,7 +78,7 @@ db.once('open', async () => {
       image: 'bucky.jpg',
       breed: 'Golden Retriever',
       age: '3 years',
-      size: categories[2]._id,
+      size: size[2]._id,
     },
     {
       name: 'Roshi',
@@ -87,7 +87,7 @@ db.once('open', async () => {
       image: 'roshi.jpg',
       breed: 'Chesapeake Bay Retriever Mix',
       age: '5 years',
-      size: categories[2]._id,
+      size: size[2]._id,
     }
   ]);
 
