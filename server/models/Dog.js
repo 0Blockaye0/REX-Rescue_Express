@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const productSchema = new Schema({
+const dogSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -14,23 +14,16 @@ const productSchema = new Schema({
   image: {
     type: String
   },
-  price: {
-    type: Number,
-    required: true,
-    min: 0.99
+  breed: {
+    type: String
   },
-  quantity: {
-    type: Number,
-    min: 0,
-    default: 0
-  },
-  category: {
+  size: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
     required: true
   }
 });
 
-const Product = mongoose.model('Product', productSchema);
+const Dog = mongoose.model('Dog', dogSchema);
 
-module.exports = Product;
+module.exports = Dog;
