@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Size, Order } = require('../models');
+const { User, Dog, Size, Application } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -8,7 +8,7 @@ const resolvers = {
     sizes: async () => {
       return await Size.find();
     },
-    products: async (parent, { size, name }) => {
+    dogs: async (parent, { size, name }) => {
       const params = {};
 
       if (size) {
@@ -21,73 +21,73 @@ const resolvers = {
         };
       }
 
-      return await Product.find(params).populate('size');
+      return await Dog.find(params).populate('size');
     },
-    product: async (parent, { _id }) => {
-      return await Product.findById(_id).populate('size');
+    dog: async (parent, { _id }) => {
+      return await Dog.findById(_id).populate('size');
     },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
+          path: 'applications.dogs',
           populate: 'size'
         });
 
-        user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
+        user.applications.sort((a, b) => b.applicationDate - a.applicationDate);
 
         return user;
       }
 
       throw new AuthenticationError('Not logged in');
     },
-    order: async (parent, { _id }, context) => {
+    apply: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.products',
+          path: 'applications.dogs',
           populate: 'size'
         });
 
-        return user.orders.id(_id);
+        return user.applications.id(_id);
       }
 
       throw new AuthenticationError('Not logged in');
     },
-    checkout: async (parent, args, context) => {
-      const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
-      const line_items = [];
+    // checkout: async (parent, args, context) => {
+    //   const url = new URL(context.headers.referer).origin;
+    //   const application = new Application({ dogs: args.dogs });
+    //   const line_items = [];
 
-      const { products } = await order.populate('products').execPopulate();
+    //   const { dogs } = await application.populate('dogs').execPopulate();
 
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`]
-        });
+    //   for (let i = 0; i < dogs.length; i++) {
+    //     const dog = await stripe.dogs.create({
+    //       name: dogs[i].name,
+    //       description: dogs[i].description,
+    //       images: [`${url}/images/${dogs[i].image}`]
+    //     });
 
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
-          currency: 'usd',
-        });
+    //     const price = await stripe.prices.create({
+    //       product: product.id,
+    //       unit_amount: products[i].price * 100,
+    //       currency: 'usd',
+    //     });
 
-        line_items.push({
-          price: price.id,
-          quantity: 1
-        });
-      }
+    //     line_items.push({
+    //       price: price.id,
+    //       quantity: 1
+    //     });
+    //   }
 
-      const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card'],
-        line_items,
-        mode: 'payment',
-        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${url}/`
-      });
+    //   const session = await stripe.checkout.sessions.create({
+    //     payment_method_types: ['card'],
+    //     line_items,
+    //     mode: 'payment',
+    //     success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+    //     cancel_url: `${url}/`
+    //   });
 
-      return { session: session.id };
-    }
+    //   return { session: session.id };
+    // }
   },
   Mutation: {
     addUser: async (parent, args) => {
