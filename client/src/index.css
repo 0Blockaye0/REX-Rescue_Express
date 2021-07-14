@@ -106,7 +106,7 @@ button {
 }
 
 button:hover {
-  opacity: .8;
+  opacity: .6;
 }
 
 button[disabled] {
