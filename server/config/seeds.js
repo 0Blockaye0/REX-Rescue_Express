@@ -27,6 +27,60 @@ db.once('open', async () => {
       size: size[3]._id,
     },
     {
+      name: 'Rusty',
+      description:
+        'Playful great with kids, extremely active, hypoallergenic.',
+      image: 'rusty.jpg',
+      breed: 'Scottish Terrier',
+      age: '5 years',
+      size: size[1]._id,
+    },
+    {
+      name: 'Bentley',
+      description:
+        'Very active and loves to fetch. Loves to play and is very sweet.',
+      image: 'bentley.jpg',
+      breed: 'Boston Terrier',
+      age: '5 years',
+      size: size[1]._id,
+    },
+    {
+      name: 'Bella',
+      description:
+        'Loves to lick faces and is protective of her food.',
+      image: 'bella.jpg',
+      breed: 'Boston Terrier',
+      age: '5 years',
+      size: size[1]._id,
+    },
+    {
+      name: 'Brady',
+      description:
+        'Very curious and loves to explore. Perfect sidekick who loves adventure.',
+      image: 'brady.jpg',
+      breed: 'Boston Terrier',
+      age: '5 years',
+      size: size[1]._id,
+    },
+    {
+      name: 'Kai',
+      description:
+        'Kai likes laying on cold tile floor and leaving tufts of hair in every nook and cranny.',
+      image: 'kai.jpg',
+      breed: 'Siberian Husky',
+      age: '12 years',
+      size: size[2]._id,
+    },
+    {
+      name: 'Leo',
+      description:
+        'Leo will let you know when someone is at the door and loves  to burrow in the blankets for mid-day naps.',
+      image: 'leo.jpg',
+      breed: 'Beagle / Dachshund Mix',
+      age: '12 years',
+      size: size[1]._id,
+    },
+    {
       name: 'Chief',
       description:
         'Chief is the perfect companion! He enjoys lots of belly rubs and his favorite activity is swimming.',
