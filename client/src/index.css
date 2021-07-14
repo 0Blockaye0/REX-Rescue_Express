@@ -1,8 +1,8 @@
 :root {
-  --primary: #232F3E;
-  --secondary: #F3A847;
+  --primary: #a7b42b;
+  --secondary: #61abdfc4;
   --tertiary: #B12704;
-  --light: #fafafa;
+  --light: #ffffffd8;
   --dark: #272f32;
   --error: rgb(228, 46, 1);
   --spacing-one: calc(1rem * 0.5);
@@ -16,6 +16,7 @@
 html,
 body {
   min-height: 100%;
+  background-color: #b5a1a1;
 }
 
 body {
@@ -69,6 +70,10 @@ p {
   margin-top: 0;
 }
 
+li {
+  list-style: none;
+}
+
 a {
   color: var(--tertiary);
   text-decoration: none;
@@ -81,6 +86,7 @@ a:hover {
 
 header {
   background: var(--primary);
+  border-bottom: 3px solid #272f;
 }
 
 header a {
@@ -89,14 +95,14 @@ header a {
 
 button {
   font-size: 1rem;
-  text-decoration: none;
   padding: 0.25rem 1rem;
-  border-radius: .5rem;
-  border: none;
-  outline: none;
+  border-radius: .2rem;
   cursor: pointer;
   margin: 0 1px;
-  background-color: var(--secondary);
+  border: 3px solid #3d79c2;
+  /* padding: 16px 24px; */
+  position: relative;
+  background-color: #a0c5f3;
 }
 
 button:hover {
