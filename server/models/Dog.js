@@ -17,6 +17,9 @@ const dogSchema = new Schema({
   breed: {
     type: String
   },
+  age: {
+    type: String
+  },
   size: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
