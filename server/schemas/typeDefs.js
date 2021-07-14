@@ -52,7 +52,7 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addApplication(dogs: [ID]!): Application
     updateUser(firstName: String, lastName: String, email: String, password: String): User
-    // updateProduct(_id: ID!, quantity: Int!): Product
+    // updateDog(_id: ID!, quantity: Int!): Dog
     login(email: String!, password: String!): Auth
   }
 `;
