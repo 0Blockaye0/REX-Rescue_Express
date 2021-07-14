@@ -96,14 +96,14 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { products }, context) => {
+    addApplication: async (parent, { dogs }, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ products });
+        const application = new Application({ dogs });
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+        await User.findByIdAndUpdate(context.user._id, { $push: { applications: application } });
 
-        return order;
+        return application;
       }
 
       throw new AuthenticationError('Not logged in');
@@ -115,11 +115,11 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateProduct: async (parent, { _id, quantity }) => {
-      const decrement = Math.abs(quantity) * -1;
+    // updateDog: async (parent, { _id, quantity }) => {
+    //   const decrement = Math.abs(quantity) * -1;
 
-      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-    },
+    //   return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+    // },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
