@@ -1,18 +1,18 @@
 import { reducer } from '../utils/reducers';
 import {
-  UPDATE_PRODUCTS,
+  UPDATE_DOGS,
   ADD_TO_CART,
   UPDATE_CART_QUANTITY,
   REMOVE_FROM_CART,
   ADD_MULTIPLE_TO_CART,
-  UPDATE_CATEGORIES,
-  UPDATE_CURRENT_CATEGORY,
+  UPDATE_SIZE,
+  UPDATE_CURRENT_SIZE,
   CLEAR_CART,
   TOGGLE_CART
 } from '../utils/actions';
 
 const initialState = {
-  products: [],
+  dogs: [],
   cart: [
     {
       _id: '1',
@@ -26,24 +26,24 @@ const initialState = {
     }
   ],
   cartOpen: false,
-  categories: [{ name: 'Food' }],
-  currentCategory: '1',
+  size: [{ name: 'Food' }],
+  currentSize: '1',
 };
 
-test('UPDATE_PRODUCTS', () => {
+test('UPDATE_DOGS', () => {
   let newState = reducer(initialState, {
-    type: UPDATE_PRODUCTS,
-    products: [{}, {}]
+    type: UPDATE_DOGS,
+    dogs: [{}, {}]
   });
 
-  expect(newState.products.length).toBe(2);
-  expect(initialState.products.length).toBe(0);
+  expect(newState.dogs.length).toBe(2);
+  expect(initialState.dogs.length).toBe(0);
 });
 
 test('ADD_TO_CART', () => {
   let newState = reducer(initialState, {
     type: ADD_TO_CART,
-    product: { purchaseQuantity: 1 }
+    dog: { purchaseQuantity: 1 }
   });
 
   expect(newState.cart.length).toBe(3);
@@ -87,31 +87,31 @@ test('REMOVE_FROM_CART', () => {
 test('ADD_MULTIPLE_TO_CART', () => {
   let newState = reducer(initialState, {
     type: ADD_MULTIPLE_TO_CART,
-    products: [{}, {}]
+    dogs: [{}, {}]
   });
 
   expect(newState.cart.length).toBe(4);
   expect(initialState.cart.length).toBe(2);
 });
 
-test('UPDATE_CATEGORIES', () => {
+test('UPDATE_SIZE', () => {
   let newState = reducer(initialState, {
-    type: UPDATE_CATEGORIES,
-    categories: [{}, {}]
+    type: UPDATE_SIZE,
+    size: [{}, {}]
   });
 
-  expect(newState.categories.length).toBe(2);
-  expect(initialState.categories.length).toBe(1);
+  expect(newState.size.length).toBe(2);
+  expect(initialState.size.length).toBe(1);
 });
 
-test('UPDATE_CURRENT_CATEGORY', () => {
+test('UPDATE_CURRENT_SIZE', () => {
   let newState = reducer(initialState, {
-    type: UPDATE_CURRENT_CATEGORY,
-    currentCategory: '2'
+    type: UPDATE_CURRENT_SIZE,
+    currentSize: '2'
   });
 
-  expect(newState.currentCategory).toBe('2');
-  expect(initialState.currentCategory).toBe('1');
+  expect(newState.currentSize).toBe('2');
+  expect(initialState.currentSize).toBe('1');
 });
 
 test('CLEAR_CART', () => {

@@ -145,7 +145,7 @@ db.once('open', async () => {
     }
   ]);
 
-  console.log('products seeded');
+  console.log('dogs seeded');
 
   await User.deleteMany();
 

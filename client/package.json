@@ -29,7 +29,7 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [
+    "dogion": [
       ">0.2%",
       "not dead",
       "not op_mini all"

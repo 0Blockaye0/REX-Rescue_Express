@@ -1,65 +1,65 @@
 import React, { useEffect } from "react";
 import ProductItem from "../ProductItem";
 import { useStoreContext } from "../../utils/GlobalState";
-import { UPDATE_PRODUCTS } from "../../utils/actions";
+import { UPDATE_DOGS } from "../../utils/actions";
 import { useQuery } from '@apollo/react-hooks';
-import { QUERY_PRODUCTS } from "../../utils/queries";
+import { QUERY_DOGS } from "../../utils/queries";
 import { idbPromise } from "../../utils/helpers";
 import spinner from "../../assets/spinner.gif"
 
 function ProductList() {
   const [state, dispatch] = useStoreContext();
 
-  const { currentCategory } = state;
+  const { currentSize } = state;
 
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
+  const { loading, data } = useQuery(QUERY_DOGS);
 
   useEffect(() => {
     if(data) {
       dispatch({
-           type: UPDATE_PRODUCTS,
-          products: data.products
+           type: UPDATE_DOGS,
+          dogs: data.dogs
         });
-        data.products.forEach((product) => {
-          idbPromise('products', 'put', product);
+        data.dogs.forEach((dog) => {
+          idbPromise('dogs', 'put', dog);
         });
     } else if (!loading) {
-      idbPromise('products', 'get').then((products) => {
+      idbPromise('dogs', 'get').then((dogs) => {
         dispatch({
-          type: UPDATE_PRODUCTS,
-         products: products
+          type: UPDATE_DOGS,
+         dogs: dogs
        });
       });
     }
   }, [data, loading, dispatch]);
 
-  function filterProducts() {
-    if (!currentCategory) {
-      return state.products;
+  function filterDogs() {
+    if (!currentSize) {
+      return state.dogs;
     }
 
-    return state.products.filter(product => product.category._id === currentCategory);
+    return state.dogs.filter(dog => dog.size._id === currentSize);
   }
 
   return (
     <div className="my-2">
       <h2>Pick Your Pup!
       </h2>
-      {state.products.length ? (
+      {state.dogs.length ? (
         <div className="flex-row">
-            {filterProducts().map(product => (
+            {filterDogs().map(dog => (
                 <ProductItem
-                  key= {product._id}
-                  _id={product._id}
-                  image={product.image}
-                  name={product.name}
-                  price={product.price}
-                  quantity={product.quantity}
+                  key= {dog._id}
+                  _id={dog._id}
+                  image={dog.image}
+                  name={dog.name}
+                  price={dog.price}
+                  quantity={dog.quantity}
                 />
             ))}
         </div>
       ) : (
-        <h3>You haven't added any products yet!</h3>
+        <h3>You haven't added any dogs yet!</h3>
       )}
       { loading ? 
       <img src={spinner} alt="loading" />: null}

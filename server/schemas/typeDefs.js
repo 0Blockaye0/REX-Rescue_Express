@@ -40,12 +40,12 @@ const typeDefs = gql`
   }
 
   type Query {
-    sizes: [Size]
+    size: [Size]
     dogs(size: ID, name: String): [Dog]
     dog(_id: ID!): Dog
     user: User
     application(_id: ID!): Application
-    // checkout(products: [ID]!): Checkout
+    // checkout(dogs: [ID]!): Checkout
   }
 
   type Mutation {

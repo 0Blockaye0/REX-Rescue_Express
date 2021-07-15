@@ -5,7 +5,7 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
-    sizes: async () => {
+    size: async () => {
       return await Size.find();
     },
     dogs: async (parent, { size, name }) => {
@@ -67,8 +67,8 @@ const resolvers = {
     //     });
 
     //     const price = await stripe.prices.create({
-    //       product: product.id,
-    //       unit_amount: products[i].price * 100,
+    //       dog: dog.id,
+    //       unit_amount: dogs[i].price * 100,
     //       currency: 'usd',
     //     });
 
