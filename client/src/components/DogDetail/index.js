@@ -13,7 +13,8 @@ function DogDetail(item) {
     name,
     _id,
     breed,
-    age
+    age, 
+    price
   } = item;
 
   const { cart } = state

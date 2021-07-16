@@ -8,6 +8,7 @@ export const QUERY_DOGS = gql`
       description
       breed
       age
+      price
       image
       category {
         _id
@@ -32,6 +33,7 @@ export const QUERY_ALL_DOGS = gql`
       description
       breed
       age
+      price
       category {
         name
       }
@@ -62,6 +64,7 @@ export const QUERY_USER = gql`
         description
         breed
         age
+        price
         image
       }
     }

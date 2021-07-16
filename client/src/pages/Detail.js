@@ -24,6 +24,7 @@ function Detail() {
 
   const { dogs, cart } = state;
 
+
   useEffect(() => {
     // already in global store
     if (dogs.length) {
@@ -50,6 +51,8 @@ function Detail() {
       });
     }
   }, [dogs, data, loading, dispatch, id]);
+
+  console.log(data);
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id)
@@ -97,12 +100,16 @@ function Detail() {
           </p>
 
           <p>
-            <strong>Breed:</strong>
+            <strong>Breed: </strong>
             {currentDog.breed}
             {" "}
             <br />
-            <strong>Application Fee:</strong>
-            {currentDog.price}
+            <strong>Age: </strong>
+            {currentDog.age} old
+            {" "}
+            <br />
+            <strong>Application Fee: </strong>
+            ${currentDog.price}
             {" "}
             <br />
             <button onClick={addToCart}>
