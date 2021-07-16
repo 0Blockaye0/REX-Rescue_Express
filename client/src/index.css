@@ -28,6 +28,14 @@ body {
   color: var(--dark);
 }
 
+li {
+  list-style: none;
+}
+
+nav {
+  justify-content: space-between;
+}
+
 h1,
 h2,
 h3,
@@ -98,6 +106,7 @@ button {
   margin: 0 1px;
   background-color: var(--secondary);
 }
+
 
 button:hover {
   opacity: .8;
@@ -201,6 +210,16 @@ input:focus {
 
 .error-text {
   color: var(--error);
+}
+
+#dogIcon {
+  width: 10%;
+  height: auto;
+  margin: 1%;
+}
+
+.site-logo {
+margin: 1%;
 }
 
 @media screen and (max-width: 768px) {
