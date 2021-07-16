@@ -6,20 +6,20 @@ const typeDefs = gql`
     name: String
   }
 
-  type Product {
+  type Dog {
     _id: ID
     name: String
     description: String
     image: String
-    quantity: Int
-    price: Float
+    breed: String
+    age: String
     category: Category
   }
 
   type Order {
     _id: ID
     purchaseDate: String
-    products: [Product]
+    dogs: [Dog]
   }
 
   type User {
@@ -30,10 +30,6 @@ const typeDefs = gql`
     orders: [Order]
   }
 
-  type Checkout {
-    session: ID
-  }
-
   type Auth {
     token: ID
     user: User
@@ -41,20 +37,26 @@ const typeDefs = gql`
 
   type Query {
     categories: [Category]
-    products(category: ID, name: String): [Product]
-    product(_id: ID!): Product
+    dogs(category: ID, name: String): [Dog]
+    dog(_id: ID!): Dog
     user: User
     order(_id: ID!): Order
-    checkout(products: [ID]!): Checkout
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
+    addOrder(dogs: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
-    updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
   }
 `;
 
 module.exports = typeDefs;
+
+// type Checkout {
+//   session: ID
+// }
+
+// checkout(products: [ID]!): Checkout
+
+//    updateDog(_id: ID!, quantity: Int!): Dog
