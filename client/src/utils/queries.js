@@ -1,13 +1,13 @@
 import gql from 'graphql-tag';
 
-export const QUERY_PRODUCTS = gql`
-  query getProducts($category: ID) {
-    products(category: $category) {
+export const QUERY_DOGS = gql`
+  query getDogs($category: ID) {
+    dogs(category: $category) {
       _id
       name
       description
-      price
-      quantity
+      breed
+      age
       image
       category {
         _id
@@ -17,21 +17,21 @@ export const QUERY_PRODUCTS = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
+  query getCheckout($dogs: [ID]!) {
+    checkout(dogs: $dogs) {
       session
     }
   }
 `;
 
-export const QUERY_ALL_PRODUCTS = gql`
+export const QUERY_ALL_DOGS = gql`
   {
-    products {
+    dogs {
       _id
       name
       description
-      price
-      quantity
+      breed
+      age
       category {
         name
       }
@@ -56,12 +56,12 @@ export const QUERY_USER = gql`
     orders {
       _id
       purchaseDate
-      products {
+      dogs {
         _id
         name
         description
-        price
-        quantity
+        breed
+        age
         image
       }
     }
