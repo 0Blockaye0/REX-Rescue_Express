@@ -26,7 +26,7 @@ const Cart = () => {
   useEffect(() => {
     async function getCart() {
       const cart = await idbPromise('cart', 'get');
-      dispatch({ type: ADD_MULTIPLE_TO_CART, products: [...cart] });
+      dispatch({ type: ADD_MULTIPLE_TO_CART, dogs: [...cart] });
     };
 
     if (!state.cart.length) {
@@ -47,16 +47,16 @@ const Cart = () => {
   }
 
   function submitCheckout() {
-    const productIds = [];
+    const dogIds = [];
 
     state.cart.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
-        productIds.push(item._id);
+        dogIds.push(item._id);
       }
     });
 
     getCheckout({
-      variables: { products: productIds }
+      variables: { dogs: dogIds }
     });
   }
 
@@ -73,7 +73,7 @@ const Cart = () => {
   return (
     <div className="cart">
       <div className="close" onClick={toggleCart}>[close]</div>
-      <h2>Shopping Cart</h2>
+      <h2>Home</h2>
       {state.cart.length ? (
         <div>
           {state.cart.map(item => (
@@ -86,10 +86,10 @@ const Cart = () => {
             {
               Auth.loggedIn() ?
                 <button onClick={submitCheckout}>
-                  Checkout
+                  Submit Application
               </button>
                 :
-                <span>(log in to check out)</span>
+                <span>(log in to submit application)</span>
             }
           </div>
         </div>
@@ -98,7 +98,7 @@ const Cart = () => {
             <span role="img" aria-label="shocked">
               😱
           </span>
-          You haven't added anything to your cart yet!
+          You haven't added any dogs to your home yet!
           </h3>
         )}
     </div>
