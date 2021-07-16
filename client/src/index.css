@@ -1,5 +1,5 @@
 :root {
-  --primary: #232F3E;
+  --primary: #2e6596;
   --secondary: #F3A847;
   --tertiary: #B12704;
   --light: #fafafa;
@@ -26,6 +26,14 @@ body {
   line-height: 1.5;
   font-size: 16px;
   color: var(--dark);
+}
+
+li {
+  list-style: none;
+}
+
+nav {
+  justify-content: space-between;
 }
 
 h1,
@@ -104,10 +112,10 @@ button:hover {
   opacity: .8;
 }
 
-/* button[disabled] {
+button[disabled] {
   cursor: default;
   opacity: .8;
-} */
+}
 
 img {
   max-width: 100%;
@@ -205,13 +213,13 @@ input:focus {
 }
 
 #dogIcon {
-width: 10%;
-height: auto;
+  width: 10%;
+  height: auto;
+  margin: 1%;
 }
 
 .site-logo {
-display: flexbox;
-justify-content: space-around;
+margin: 1%;
 }
 
 @media screen and (max-width: 768px) {
