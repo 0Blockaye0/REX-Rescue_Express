@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import dogIcon from "../../assets/dog.png"
+import dogIcon from "../../assets/dog2.png"
 
 function Nav() {
 
@@ -42,6 +42,7 @@ function Nav() {
 
   return (
     <header className="flex-row px-1">
+      <div class="header__bg">
       <div className="site-logo">
       <h1>
         <Link to="/">
@@ -53,6 +54,7 @@ function Nav() {
       <nav>
         {showNavigation()}
       </nav>
+      </div>
     </header>
   );
 }

@@ -42,19 +42,23 @@ function DogDetail(item) {
   return (
     <div className="card px-1 py-1">
       <Link to={`/dogs/${_id}`}>
+        <div className="imgBx">
         <img
           alt={name}
           src={`/images/${image}`}
         />
+        </div>
         <p>{name}</p>
       </Link>
-      <div>
+      <div className="details">
+      <button onClick={addToCart}>Submit Application</button>
         <div>{breed}</div>
         <span>{age} old</span>
       </div>
-      <button onClick={addToCart}>Submit Application</button>
     </div>
   );
 }
 
 export default DogDetail;
+
+
