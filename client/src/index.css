@@ -99,14 +99,15 @@ button {
   background-color: var(--secondary);
 }
 
+
 button:hover {
   opacity: .8;
 }
 
-button[disabled] {
+/* button[disabled] {
   cursor: default;
   opacity: .8;
-}
+} */
 
 img {
   max-width: 100%;
@@ -201,6 +202,16 @@ input:focus {
 
 .error-text {
   color: var(--error);
+}
+
+#dogIcon {
+width: 10%;
+height: auto;
+}
+
+.site-logo {
+display: flexbox;
+justify-content: space-around;
 }
 
 @media screen and (max-width: 768px) {

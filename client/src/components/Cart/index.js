@@ -8,6 +8,7 @@ import Auth from "../../utils/auth";
 import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import "./style.css";
+import dogHouse from "../../assets/dog-house.png"
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -63,7 +64,7 @@ const Cart = () => {
   if (!state.cartOpen) {
     return (
       <div className="cart-closed" onClick={toggleCart}>
-        <img src="../assets/dog-house.png">
+        <img src={dogHouse} alt="doghouse">
         </img>
       </div>
     );
