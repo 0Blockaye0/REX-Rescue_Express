@@ -50,9 +50,9 @@ function DogDetail(item) {
       </Link>
       <div>
         <div>{breed}</div>
-        <span>{age}</span>
+        <span>{age} old</span>
       </div>
-      <button onClick={addToCart}>Add to home</button>
+      <button onClick={addToCart}>Submit Application</button>
     </div>
   );
 }
