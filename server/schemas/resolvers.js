@@ -52,42 +52,42 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    // checkout: async (parent, args, context) => {
-    //   const url = new URL(context.headers.referer).origin;
-    //   const order = new Order({ products: args.dogs });
-    //   const line_items = [];
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      const order = new Order({ dogs: args.dogs });
+      const line_items = [];
 
-    //   const { dogs } = await order.populate('dogs').execPopulate();
+      const { dogs } = await order.populate('dogs').execPopulate();
 
-    //   for (let i = 0; i < dogs.length; i++) {
-    //     const dog = await stripe.dogs.create({
-    //       name: dogs[i].name,
-    //       description: dogs[i].description,
-    //       images: [`${url}/images/${dogs[i].image}`]
-    //     });
+      for (let i = 0; i < dogs.length; i++) {
+        const dog = await stripe.dogs.create({
+          name: dogs[i].name,
+          description: dogs[i].description,
+          images: [`${url}/images/${dogs[i].image}`]
+        });
 
-    //     const price = await stripe.prices.create({
-    //       dog: dog.id,
-    //       unit_amount: dogs[i].price * 100,
-    //       currency: 'usd',
-    //     });
+        const price = await stripe.prices.create({
+          dog: dog.id,
+          unit_amount: dogs[i].price * 100,
+          currency: 'usd',
+        });
 
-    //     line_items.push({
-    //       price: price.id,
-    //       quantity: 1
-    //     });
-    //   }
+        line_items.push({
+          price: price.id,
+          quantity: 1
+        });
+      }
 
-    //   const session = await stripe.checkout.sessions.create({
-    //     payment_method_types: ['card'],
-    //     line_items,
-    //     mode: 'payment',
-    //     success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-    //     cancel_url: `${url}/`
-    //   });
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`
+      });
 
-    //   return { session: session.id };
-    // }
+      return { session: session.id };
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {

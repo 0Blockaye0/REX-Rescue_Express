@@ -20,6 +20,9 @@ const dogSchema = new Schema({
   age: {
     type: String
   },
+  price: {
+    type: Number
+  },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',

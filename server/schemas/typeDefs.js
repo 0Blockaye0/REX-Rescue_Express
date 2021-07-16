@@ -13,6 +13,7 @@ const typeDefs = gql`
     image: String
     breed: String
     age: String
+    price: Float
     category: Category
   }
 
@@ -30,6 +31,11 @@ const typeDefs = gql`
     orders: [Order]
   }
 
+  
+  type Checkout {
+    session: ID
+  }
+
   type Auth {
     token: ID
     user: User
@@ -41,6 +47,7 @@ const typeDefs = gql`
     dog(_id: ID!): Dog
     user: User
     order(_id: ID!): Order
+    checkout(dogs: [ID]!): Checkout
   }
 
   type Mutation {
@@ -53,10 +60,6 @@ const typeDefs = gql`
 
 module.exports = typeDefs;
 
-// type Checkout {
-//   session: ID
-// }
 
-// checkout(products: [ID]!): Checkout
 
 //    updateDog(_id: ID!, quantity: Int!): Dog

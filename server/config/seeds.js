@@ -24,6 +24,7 @@ db.once('open', async () => {
       image: 'arrow.jpg',
       breed: 'Belgian Malinois',
       age: '2 years',
+      price: 10,
       category: categories[3]._id,
     },
     {
@@ -33,6 +34,7 @@ db.once('open', async () => {
       image: 'rusty.jpg',
       breed: 'Scottish Terrier',
       age: '5 years',
+      price: 10,
       category: categories[1]._id,
     },
     {
@@ -42,6 +44,7 @@ db.once('open', async () => {
       image: 'bentley.jpg',
       breed: 'Boston Terrier',
       age: '5 years',
+      price: 10,
       category: categories[1]._id,
     },
     {
@@ -51,6 +54,7 @@ db.once('open', async () => {
       image: 'bella.jpg',
       breed: 'Boston Terrier',
       age: '5 years',
+      price: 10,
       category: categories[1]._id,
     },
     {
@@ -60,6 +64,7 @@ db.once('open', async () => {
       image: 'brady.jpg',
       breed: 'Boston Terrier',
       age: '5 years',
+      price: 10,
       category: categories[1]._id,
     },
     {
@@ -69,6 +74,7 @@ db.once('open', async () => {
       image: 'kai.jpg',
       breed: 'Siberian Husky',
       age: '12 years',
+      price: 10,
       category: categories[2]._id,
     },
     {
@@ -78,6 +84,7 @@ db.once('open', async () => {
       image: 'leo.jpg',
       breed: 'Beagle / Dachshund Mix',
       age: '12 years',
+      price: 10,
       category: categories[1]._id,
     },
     {
@@ -87,6 +94,7 @@ db.once('open', async () => {
       image: 'chief.jpg',
       breed: 'German Shepherd',
       age: '8 years',
+      price: 10,
       category: categories[3]._id,
     },
     {
@@ -96,6 +104,7 @@ db.once('open', async () => {
       image: 'echo.jpg',
       breed: 'German Shepherd',
       age: '5 years',
+      price: 10,
       category: categories[3]._id,
     },
     {
@@ -105,6 +114,7 @@ db.once('open', async () => {
       image: 'camelot.jpg',
       breed: 'Samoyed',
       age: '3 years',
+      price: 10,
       category: categories[2]._id,
     },
     {
@@ -114,6 +124,7 @@ db.once('open', async () => {
       image: 'roux.jpg',
       breed: 'Corgi',
       age: '3 years',
+      price: 10,
       category: categories[1]._id,
     },
     {
@@ -123,6 +134,7 @@ db.once('open', async () => {
       image: 'finn.jpg',
       breed: 'Mixed Breed',
       age: '6 years',
+      price: 10,
       category: categories[2]._id,
     },
     {
@@ -132,6 +144,7 @@ db.once('open', async () => {
       image: 'bucky.jpg',
       breed: 'Golden Retriever',
       age: '3 years',
+      price: 10,
       category: categories[2]._id,
     },
     {
@@ -141,6 +154,7 @@ db.once('open', async () => {
       image: 'roshi.jpg',
       breed: 'Chesapeake Bay Retriever Mix',
       age: '5 years',
+      price: 10,
       category: categories[2]._id,
     }
   ]);

@@ -98,17 +98,22 @@ function Detail() {
 
           <p>
             <strong>Breed:</strong>
-            ${currentDog.breed}
+            {currentDog.breed}
             {" "}
+            <br />
+            <strong>Application Fee:</strong>
+            {currentDog.price}
+            {" "}
+            <br />
             <button onClick={addToCart}>
-              Add to Home
+              Submit Application
             </button>
-            <button 
+            {/* <button 
               disabled={!cart.find(p => p._id === currentDog._id)} 
               onClick={removeFromCart}
             >
-              Remove from Home
-            </button>
+              Remove Application
+            </button> */}
           </p>
 
           <img
