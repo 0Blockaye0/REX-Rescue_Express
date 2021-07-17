@@ -1,7 +1,7 @@
 :root {
   --primary: #232F3E;
   --secondary: #F3A847;
-  --tertiary: #B12704;
+  --tertiary: rgba(201, 201, 55, 0.692);
   --light: #fafafa;
   --dark: #272f32;
   --error: rgb(228, 46, 1);
@@ -70,6 +70,8 @@ h5 {
 
 h6 {
   font-size: 1rem;
+  font-size: 0.8rem;
+  color: rgba(201, 201, 55, 0.493);
 }
 
 p {
@@ -78,13 +80,13 @@ p {
 }
 
 a {
-  color: var(--tertiary);
+  color: var(--secondary);
   text-decoration: none;
   font-weight: bold;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: rgb(228, 228, 40);
 }
 
 header {
@@ -164,7 +166,8 @@ input:focus {
 .flex-row {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
+  justify-content: flex-start;
 }
 
 .space-between {
@@ -215,10 +218,10 @@ input:focus {
   padding-bottom: var(--spacing-two);
 }
 
-/* .card {
-  width: 25%;
-  text-align: center;
-} */
+.signup-login {
+  float: right;
+  margin-top: 3%;
+}
 
 .error-text {
   color: var(--error);
@@ -228,7 +231,13 @@ input:focus {
   width: 10%;
   height: auto;
   margin: 1%;
+  display: inline;
+  float: left;
 }
+
+/* #our-title {
+  margin-left: 3%;
+} */
 
 .site-logo {
 margin: 1%;
@@ -327,6 +336,19 @@ margin-top: 5px;
 .details {
   display: inline-grid;
   margin-bottom: 5%;
+}
+
+.custom-header {
+  display: flow-root;
+  justify-content: flex-end;
+}
+
+#our-title {
+  color: beige;
+}
+
+#our-title:hover {
+  color:var(--secondary) ;
 }
 /* //////////// */
 

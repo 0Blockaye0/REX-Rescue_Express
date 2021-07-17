@@ -41,13 +41,14 @@ function Nav() {
   }
 
   return (
-    <header className="flex-row px-1">
+    <header className="flex-row px-1 custom-header">
       <div class="header__bg">
       <div className="site-logo">
       <h1>
         <Link to="/">
           <img src={dogIcon} alt="dog" id="dogIcon"></img>
-          REX
+          <h1 id="our-title" >REX</h1>
+          <h6>the rescue express</h6>
         </Link>
       </h1>
       </div>
