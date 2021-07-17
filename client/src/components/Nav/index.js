@@ -48,7 +48,9 @@ function Nav() {
         <Link to="/">
           <img src={dogIcon} alt="dog" id="dogIcon"></img>
           <h1 id="our-title" >REX</h1>
-          <h6>the rescue express</h6>
+          <h4>Welcome to Rescue Express (REX) our goal is to make it fast and easy to find the right furry friend for you.</h4>
+          <h4> Simply select the size of pup you are looking for and start picking your new best buddy.</h4>
+          <h4> All our dogs are rescues from our shelters.</h4>
         </Link>
       </h1>
       </div>
