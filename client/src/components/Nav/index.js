@@ -1,7 +1,7 @@
 import React from "react";
 import Auth from "../../utils/auth";
 import { Link } from "react-router-dom";
-import dogIcon from "../../assets/dog.png"
+import dogIcon from "../../assets/dog2.png"
 
 function Nav() {
 
@@ -41,18 +41,21 @@ function Nav() {
   }
 
   return (
-    <header className="flex-row px-1">
+    <header className="flex-row px-1 custom-header">
+      <div class="header__bg">
       <div className="site-logo">
       <h1>
         <Link to="/">
           <img src={dogIcon} alt="dog" id="dogIcon"></img>
-          REX
+          <h1 id="our-title" >REX</h1>
+          <h6>the rescue express</h6>
         </Link>
       </h1>
       </div>
       <nav>
         {showNavigation()}
       </nav>
+      </div>
     </header>
   );
 }

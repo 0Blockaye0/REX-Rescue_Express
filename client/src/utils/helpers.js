@@ -5,6 +5,7 @@ export function pluralize(name, count) {
   return name + 's';
 }
 
+
 export function idbPromise(storeName, method, object) {
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open('rescue-express', 1);

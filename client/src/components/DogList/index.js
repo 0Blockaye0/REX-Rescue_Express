@@ -64,6 +64,7 @@ function DogList() {
       { loading ? 
       <img src={spinner} alt="loading" />: null}
     </div>
+    
   );
 }
 
