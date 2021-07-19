@@ -40,7 +40,7 @@ function CategoryMenu() {
 
   return (
     <div>
-      <h2>Filter by size:</h2>
+      <h2 className="chooseSizeh2">Filter by Size:</h2>
       {categories.map(item => (
         <button
           key={item._id}
