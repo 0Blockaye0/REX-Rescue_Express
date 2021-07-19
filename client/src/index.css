@@ -109,7 +109,7 @@ header a {
 }
 
 button {
-  font-size: 1rem;
+  /* font-size: 1rem;
   text-decoration: none;
   padding: 0.25rem 1rem;
   border-radius: .5rem;
@@ -117,7 +117,26 @@ button {
   outline: none;
   cursor: pointer;
   margin: 0 1px;
-  background-color: var(--secondary);
+  background-color: var(--secondary); */
+  
+    float: center;
+    /* display: inline-block; */
+    height: 25px;
+    width:fit-content;
+    margin: 1px auto 1px auto;
+    box-sizing: border-box;
+    border: transparent;
+    border-radius: 60px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #ffffff;
+    background-color: #f3a847a4;
+    cursor: pointer;
+    outline: none;
+  
 }
 
 
@@ -347,7 +366,13 @@ margin-top: 5px;
   justify-content: flex-end;
 }
 
+.availableDogsh2 {
+  margin-top: 10%;
+}
 
+.chooseSizeh2 {
+  margin-bottom: 2%;
+}
 
 
 /* blake add for single page dog */

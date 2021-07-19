@@ -43,7 +43,7 @@ function DogList() {
 
   return (
     <div className="my-2">
-      <h2>Our Available Dogs:</h2>
+      <h2 className="availableDogsh2">Our Available Dogs:</h2>
       {state.dogs.length ? (
         <div className="flex-row">
             {filterDogs().map(dog => (
