@@ -8,7 +8,7 @@ function Nav() {
   function showNavigation() {
     if (Auth.loggedIn()) {
       return (
-        <ul className="flex-row">
+        <ul className="flex-row view-logout">
           <li className="mx-1">
             <Link to="/orderHistory">
               View Applications
