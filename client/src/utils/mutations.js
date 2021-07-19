@@ -23,6 +23,7 @@ export const ADD_ORDER = gql`
       breed
       age
       price
+      quantity
       category {
         name
       } 

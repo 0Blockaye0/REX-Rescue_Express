@@ -14,6 +14,7 @@ const typeDefs = gql`
     breed: String
     age: String
     price: Float
+    quantity: Int
     category: Category
   }
 
@@ -54,6 +55,7 @@ const typeDefs = gql`
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addOrder(dogs: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
+    updateDog(_id: ID!, quantity: Int!): Dog
     login(email: String!, password: String!): Auth
   }
 `;
@@ -62,4 +64,3 @@ module.exports = typeDefs;
 
 
 
-//    updateDog(_id: ID!, quantity: Int!): Dog

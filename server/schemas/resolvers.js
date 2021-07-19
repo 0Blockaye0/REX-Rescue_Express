@@ -123,11 +123,11 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    // updateDog: async (parent, { _id, quantity }) => {
-    //   const decrement = Math.abs(quantity) * -1;
+    updateDog: async (parent, { _id, quantity }) => {
+      const decrement = Math.abs(quantity) * -1;
 
-    //   return await Dog.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-    // },
+      return await Dog.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 

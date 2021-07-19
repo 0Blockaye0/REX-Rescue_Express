@@ -55,6 +55,7 @@ function DogList() {
                   breed={dog.breed}
                   age={dog.age}
                   price={dog.price}
+                  quantity={product.quantity}
                 />
             ))}
         </div>
