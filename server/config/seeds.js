@@ -25,6 +25,7 @@ db.once('open', async () => {
       breed: 'Belgian Malinois',
       age: '2 years',
       price: 10,
+      quantity: 1,
       category: categories[3]._id,
     },
     {
@@ -35,6 +36,7 @@ db.once('open', async () => {
       breed: 'Scottish Terrier',
       age: '5 years',
       price: 10,
+      quantity: 1,
       category: categories[1]._id,
     },
     {
@@ -45,6 +47,7 @@ db.once('open', async () => {
       breed: 'Boston Terrier',
       age: '5 years',
       price: 10,
+      quantity: 1,
       category: categories[1]._id,
     },
     {
@@ -55,6 +58,7 @@ db.once('open', async () => {
       breed: 'Boston Terrier',
       age: '5 years',
       price: 10,
+      quantity: 1,
       category: categories[1]._id,
     },
     {
@@ -65,6 +69,7 @@ db.once('open', async () => {
       breed: 'Boston Terrier',
       age: '5 years',
       price: 10,
+      quantity: 1,
       category: categories[1]._id,
     },
     {
@@ -75,6 +80,7 @@ db.once('open', async () => {
       breed: 'Siberian Husky',
       age: '12 years',
       price: 10,
+      quantity: 1,
       category: categories[2]._id,
     },
     {
@@ -85,6 +91,7 @@ db.once('open', async () => {
       breed: 'Beagle / Dachshund Mix',
       age: '12 years',
       price: 10,
+      quantity: 1,
       category: categories[1]._id,
     },
     {
@@ -95,6 +102,7 @@ db.once('open', async () => {
       breed: 'German Shepherd',
       age: '8 years',
       price: 10,
+      quantity: 1,
       category: categories[3]._id,
     },
     {
@@ -105,6 +113,7 @@ db.once('open', async () => {
       breed: 'German Shepherd',
       age: '5 years',
       price: 10,
+      quantity: 1,
       category: categories[3]._id,
     },
     {
@@ -115,26 +124,29 @@ db.once('open', async () => {
       breed: 'Samoyed',
       age: '3 years',
       price: 10,
+      quantity: 1,
       category: categories[2]._id,
     },
     {
       name: 'Roux',
       description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+        'Roux is a Cardian Welsh Corgi that is an expert hiker and cuddler.',
       image: 'roux.jpg',
       breed: 'Corgi',
       age: '3 years',
       price: 10,
+      quantity: 1,
       category: categories[1]._id,
     },
     {
       name: 'Finn',
       description:
-        'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
+        'Loves long hikes in the mountains and posing with wildflowers.',
       image: 'finn.jpg',
       breed: 'Mixed Breed',
       age: '6 years',
       price: 10,
+      quantity: 1,
       category: categories[2]._id,
     },
     {
@@ -145,6 +157,7 @@ db.once('open', async () => {
       breed: 'Golden Retriever',
       age: '3 years',
       price: 10,
+      quantity: 1,
       category: categories[2]._id,
     },
     {
@@ -155,6 +168,7 @@ db.once('open', async () => {
       breed: 'Chesapeake Bay Retriever Mix',
       age: '5 years',
       price: 10,
+      quantity: 1,
       category: categories[2]._id,
     }
   ]);
