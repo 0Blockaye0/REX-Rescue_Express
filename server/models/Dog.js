@@ -21,10 +21,14 @@ const dogSchema = new Schema({
     type: String
   },
   price: {
-    type: Number
+    type: Number,
+    required: true,
+    min: 0
   },
   quantity: {
-    type: Number
+    type: Number,
+    min: 0,
+    default: 0
   },
   category: {
     type: Schema.Types.ObjectId,
