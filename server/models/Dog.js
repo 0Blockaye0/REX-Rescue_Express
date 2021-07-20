@@ -23,6 +23,9 @@ const dogSchema = new Schema({
   price: {
     type: Number
   },
+  quantity: {
+    type: Number
+  },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',

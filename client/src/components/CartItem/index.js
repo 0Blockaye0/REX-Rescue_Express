@@ -45,15 +45,18 @@ const CartItem = ({ item }) => {
         />
       </div>
       <div>
-        <div>{item.name}, ${item.price}</div>
         <div>
-          <span>Qty:</span>
+          {item.name}
+          <br /> 
+          Application fee: ${item.price}</div>
+        <div>
+          {/* <span>Qty:</span>
           <input
             type="number"
             placeholder="1"
             value={item.purchaseQuantity}
             onChange={onChange}
-          />
+          /> */}
           <span
             role="img"
             aria-label="trash"
