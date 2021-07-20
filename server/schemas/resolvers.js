@@ -20,7 +20,7 @@ const resolvers = {
           $regex: name
         };
       }
-
+        
       return await Dog.find(params).populate('category');
     },
     dog: async (parent, { _id }) => {
@@ -49,53 +49,47 @@ const resolvers = {
 
         return user.orders.id(_id);
       }
-
+      console.log(_id)
       throw new AuthenticationError('Not logged in');
     },
-    // checkout: async (parent, args, context) => {
-    //   const url = new URL(context.headers.referer).origin;
-    //   console.log(url)
-    //   console.log(args.dogs)
-    //   const order = new Order({ dogs: args.dogs });
-    //   console.log(order)
-    //   console.log(order)
+     checkout: async (parent, args, context) => {
+       const url = new URL(context.headers.referer).origin;
+       const order = new Order({ dogs: args.dogs });
 
-    //   const line_items = [];
-    //   console.log(line_items)
-
-    //   const { dogs } = await order.populate('dogs').execPopulate();
-    //   console.log(dogs)
-    //   for (let i = 0; i < dogs.length; i++) {
-    //     console.log("looping")
-    //     const dog = await stripe.dogs.create({
-    //       name: dogs[i].name,
-    //       description: dogs[i].description,
-    //       images: [`${url}/images/${dogs[i].image}`]
-    //     });
-
-    //     const price = await stripe.prices.create({
-    //       dog: dog.id,
-    //       unit_amount: dogs[i].price * 100,
-    //       currency: 'usd',
-    //     });
-
-    //     line_items.push({
-    //       price: price.id,
-    //       quantity: 1
-    //     });
-    //     console.log(line_items)
-    //   }
-    //   console.log(line_items)
-    //   const session = await stripe.checkout.sessions.create({
-    //     payment_method_types: ['card'],
-    //     line_items: line_items,
-    //     mode: 'payment',
-    //     success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-    //     cancel_url: `${url}/`
-    //   });
-    //   console.log(session)
-    //   return { session: session.id };
-    // }
+       const line_items = [];
+      console.log(line_items)
+       const { dogs } = await order.populate('dogs').execPopulate();
+      
+       for (let i = 0; i < dogs.length; i++) {
+         console.log("looping")
+         const dog = await stripe.dogs.create({
+           name: dogs[i].name,
+           description: dogs[i].description,
+           images: [`${url}/images/${dogs[i].image}`]
+         });
+        
+         const price = await stripe.prices.create({
+           dog: dog.id,
+           unit_amount: dogs[i].price * 100,
+           currency: 'usd',
+         });
+         
+         line_items.push({
+           price: dog.id,
+           quantity: 1,
+         });
+         console.log(line_items)
+       }
+       const session = await stripe.checkout.sessions.create({
+         payment_method_types: ['card'],
+         line_items,
+         mode: 'payment',
+         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+         cancel_url: `${url}/`
+       });
+       console.log(session)
+       return { session: session.id };
+     }
   },
   Mutation: {
     addUser: async (parent, args) => {

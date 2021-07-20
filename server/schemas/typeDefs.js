@@ -13,8 +13,8 @@ const typeDefs = gql`
     image: String
     breed: String
     age: String
-    price: Float
     quantity: Int
+    price: Float
     category: Category
   }
 
