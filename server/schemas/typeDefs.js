@@ -11,6 +11,8 @@ const typeDefs = gql`
     name: String
     description: String
     image: String
+    breed: String
+    age: String
     quantity: Int
     price: Float
     category: Category
@@ -30,6 +32,7 @@ const typeDefs = gql`
     orders: [Order]
   }
 
+  
   type Checkout {
     session: ID
   }
@@ -58,3 +61,6 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
+
+
+

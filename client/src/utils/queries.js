@@ -6,9 +6,11 @@ export const QUERY_PRODUCTS = gql`
       _id
       name
       description
+      breed
+      age
       price
-      quantity
       image
+      quantity
       category {
         _id
       }
@@ -30,6 +32,8 @@ export const QUERY_ALL_PRODUCTS = gql`
       _id
       name
       description
+      breed
+      age
       price
       quantity
       category {
@@ -60,6 +64,8 @@ export const QUERY_USER = gql`
         _id
         name
         description
+        breed
+        age
         price
         quantity
         image

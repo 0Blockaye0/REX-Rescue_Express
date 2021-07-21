@@ -24,6 +24,7 @@ function Detail() {
 
   const { products, cart } = state;
 
+
   useEffect(() => {
     // already in global store
     if (products.length) {
@@ -50,6 +51,8 @@ function Detail() {
       });
     }
   }, [products, data, loading, dispatch, id]);
+
+  console.log(data);
 
   const addToCart = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === id)
@@ -85,36 +88,54 @@ function Detail() {
   return (
     <>
       {currentProduct && cart ? (
-        <div className="container my-1">
-          <Link to="/">
-            ← Back to Products
+        <div className="container wrapper my-1">
+          <div className="product-img">
+          <img
+            src={`/images/${currentProduct.image}`}
+            alt={currentProduct.name}
+            height="420" 
+            width="327"
+          />
+          </div>
+          <div className="product-info">
+            <div className="product-text">
+          <Link to="/" id="back-link">
+            ← Back to Available Dogs
           </Link>
 
-          <h2>{currentProduct.name}</h2>
+          <h2 id="dog-name">{currentProduct.name}</h2>
 
           <p>
             {currentProduct.description}
           </p>
 
           <p>
-            <strong>Price:</strong>
-            ${currentProduct.price}
+            <strong>Breed: </strong>
+            {currentProduct.breed}
             {" "}
-            <button onClick={addToCart}>
-              Add to Cart
-            </button>
-            <button 
+            <br />
+            <strong>Age: </strong>
+            {currentProduct.age} old
+            {" "}
+            <br />
+            {/* <button 
               disabled={!cart.find(p => p._id === currentProduct._id)} 
               onClick={removeFromCart}
             >
-              Remove from Cart
-            </button>
+              Remove Application
+            </button> */}
           </p>
-
-          <img
-            src={`/images/${currentProduct.image}`}
-            alt={currentProduct.name}
-          />
+          </div>
+          <div className="product-price-btn">
+            <strong>Application Fee: </strong>
+              ${currentProduct.price}
+              {" "}
+              <br />
+              <button onClick={addToCart}>
+                Submit Application
+              </button>
+          </div>
+          </div>
         </div>
       ) : null}
       {
@@ -126,3 +147,20 @@ function Detail() {
 };
 
 export default Detail;
+
+// <div class="wrapper">
+//     <div class="product-img">
+//       <img src="http://bit.ly/2tMBBTd" height="420" width="327">
+//     </div>
+//     <div class="product-info">
+//       <div class="product-text">
+//         <h1>Harvest Vase</h1>
+//         <h2>by studio and friends</h2>
+//         <p>Harvest Vases are a reinterpretation<br> of peeled fruits and vegetables as<br> functional objects. The surfaces<br> appear to be sliced and pulled aside,<br> allowing room for growth. </p>
+//       </div>
+//       <div class="product-price-btn">
+//         <p><span>78</span>$</p>
+//         <button type="button">buy now</button>
+//       </div>
+//     </div>
+//   </div>

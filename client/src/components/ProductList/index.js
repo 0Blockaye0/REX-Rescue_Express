@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ProductItem from "../ProductItem";
+import ProductDetail from "../ProductItem";
 import { useStoreContext } from "../../utils/GlobalState";
 import { UPDATE_PRODUCTS } from "../../utils/actions";
 import { useQuery } from '@apollo/react-hooks';
@@ -43,26 +43,29 @@ function ProductList() {
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
+      <h2 className="availableDogsh2">Our Adoptable Dogs:</h2>
       {state.products.length ? (
         <div className="flex-row">
             {filterProducts().map(product => (
-                <ProductItem
+                <ProductDetail
                   key= {product._id}
                   _id={product._id}
                   image={product.image}
                   name={product.name}
+                  breed={product.breed}
+                  age={product.age}
                   price={product.price}
                   quantity={product.quantity}
                 />
             ))}
         </div>
       ) : (
-        <h3>You haven't added any products yet!</h3>
+        <h3>You haven't added any dogs yet!</h3>
       )}
       { loading ? 
       <img src={spinner} alt="loading" />: null}
     </div>
+    
   );
 }
 

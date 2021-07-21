@@ -8,6 +8,7 @@ import Auth from "../../utils/auth";
 import { useStoreContext } from "../../utils/GlobalState";
 import { TOGGLE_CART, ADD_MULTIPLE_TO_CART } from "../../utils/actions";
 import "./style.css";
+import dogHouse from "../../assets/dog-house.png"
 
 const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
@@ -48,7 +49,7 @@ const Cart = () => {
 
   function submitCheckout() {
     const productIds = [];
-
+    
     state.cart.forEach((item) => {
       for (let i = 0; i < item.purchaseQuantity; i++) {
         productIds.push(item._id);
@@ -63,9 +64,8 @@ const Cart = () => {
   if (!state.cartOpen) {
     return (
       <div className="cart-closed" onClick={toggleCart}>
-        <span
-          role="img"
-          aria-label="trash">🛒</span>
+        <img src={dogHouse} alt="doghouse">
+        </img>
       </div>
     );
   }
@@ -73,7 +73,7 @@ const Cart = () => {
   return (
     <div className="cart">
       <div className="close" onClick={toggleCart}>[close]</div>
-      <h2>Shopping Cart</h2>
+      <h2>Home</h2>
       {state.cart.length ? (
         <div>
           {state.cart.map(item => (
@@ -89,7 +89,7 @@ const Cart = () => {
                   Checkout
               </button>
                 :
-                <span>(log in to check out)</span>
+                <span>(log in to submit application)</span>
             }
           </div>
         </div>
@@ -98,7 +98,7 @@ const Cart = () => {
             <span role="img" aria-label="shocked">
               😱
           </span>
-          You haven't added anything to your cart yet!
+          You haven't added any dogs to your home yet!
           </h3>
         )}
     </div>

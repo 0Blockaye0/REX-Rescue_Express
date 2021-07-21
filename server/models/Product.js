@@ -14,6 +14,12 @@ const productSchema = new Schema({
   image: {
     type: String
   },
+  breed: {
+    type: String
+  },
+  age: {
+    type: String
+  },
   price: {
     type: Number,
     required: true,
