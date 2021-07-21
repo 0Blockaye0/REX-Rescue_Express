@@ -97,7 +97,7 @@ function Detail() {
             width="327"
           />
           </div>
-          <div class="product-info">
+          <div className="product-info">
             <div className="product-text">
           <Link to="/" id="back-link">
             ← Back to Available Dogs
