@@ -1,12 +1,12 @@
 import React, { createContext, useContext } from "react";
-import { useDogReducer } from './reducers'
+import { useProductReducer } from './reducers'
 
 const StoreContext = createContext();
 const { Provider } = StoreContext;
 
 const StoreProvider = ({ value = [], ...props }) => {
-  const [state, dispatch] = useDogReducer({
-    dogs: [],
+  const [state, dispatch] = useProductReducer({
+    products: [],
     cart: [],
     cartOpen: false,
     categories: [],

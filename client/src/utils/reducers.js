@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import {
-  UPDATE_DOGS,
+  UPDATE_PRODUCTS,
   ADD_TO_CART,
   UPDATE_CART_QUANTITY,
   REMOVE_FROM_CART,
@@ -13,40 +13,40 @@ import {
 
 export const reducer = (state, action) => {
   switch (action.type) {
-    case UPDATE_DOGS:
+    case UPDATE_PRODUCTS:
       return {
         ...state,
-        dogs: [...action.dogs],
+        products: [...action.products],
       };
 
     case ADD_TO_CART:
       return {
         ...state,
         cartOpen: true,
-        cart: [...state.cart, action.dog],
+        cart: [...state.cart, action.product],
       };
 
     case ADD_MULTIPLE_TO_CART:
       return {
         ...state,
-        cart: [...state.cart, ...action.dogs],
+        cart: [...state.cart, ...action.products],
       };
 
     case UPDATE_CART_QUANTITY:
       return {
         ...state,
         cartOpen: true,
-        cart: state.cart.map(dog => {
-          if (action._id === dog._id) {
-            dog.purchaseQuantity = action.purchaseQuantity
+        cart: state.cart.map(product => {
+          if (action._id === product._id) {
+            product.purchaseQuantity = action.purchaseQuantity
           }
-          return dog
+          return product
         })
       };
 
     case REMOVE_FROM_CART:
-      let newState = state.cart.filter(dog => {
-        return dog._id !== action._id;
+      let newState = state.cart.filter(product => {
+        return product._id !== action._id;
       });
 
       return {
@@ -85,6 +85,6 @@ export const reducer = (state, action) => {
   }
 };
 
-export function useDogReducer(initialState) {
+export function useProductReducer(initialState) {
   return useReducer(reducer, initialState)
 }

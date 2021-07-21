@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Dog, Category, Order } = require('../models');
+const { User, Product, Category, Order } = require('../models');
 const { signToken } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
@@ -8,7 +8,7 @@ const resolvers = {
     categories: async () => {
       return await Category.find();
     },
-    dogs: async (parent, { category, name }) => {
+    products: async (parent, { category, name }) => {
       const params = {};
 
       if (category) {
@@ -20,16 +20,16 @@ const resolvers = {
           $regex: name
         };
       }
-        
-      return await Dog.find(params).populate('category');
+
+      return await Product.find(params).populate('category');
     },
-    dog: async (parent, { _id }) => {
-      return await Dog.findById(_id).populate('category');
+    product: async (parent, { _id }) => {
+      return await Product.findById(_id).populate('category');
     },
     user: async (parent, args, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.dogs',
+          path: 'orders.products',
           populate: 'category'
         });
 
@@ -43,53 +43,54 @@ const resolvers = {
     order: async (parent, { _id }, context) => {
       if (context.user) {
         const user = await User.findById(context.user._id).populate({
-          path: 'orders.dogs',
+          path: 'orders.products',
           populate: 'category'
         });
 
         return user.orders.id(_id);
       }
-      console.log(_id)
+
       throw new AuthenticationError('Not logged in');
     },
-     checkout: async (parent, args, context) => {
-       const url = new URL(context.headers.referer).origin;
-       const order = new Order({ dogs: args.dogs });
+    checkout: async (parent, args, context) => {
+      const url = new URL(context.headers.referer).origin;
+      const order = new Order({ products: args.products });
+      const line_items = [];
 
-       const line_items = [];
       console.log(line_items)
-       const { dogs } = await order.populate('dogs').execPopulate();
-      
-       for (let i = 0; i < dogs.length; i++) {
-         console.log("looping")
-         const dog = await stripe.dogs.create({
-           name: dogs[i].name,
-           description: dogs[i].description,
-           images: [`${url}/images/${dogs[i].image}`]
-         });
+      const { products } = await order.populate('products').execPopulate();
+      console.log(products)
+      for (let i = 0; i < products.length; i++) {
+        const product = await stripe.products.create({
+          name: products[i].name,
+          description: products[i].description,
+          images: [`${url}/images/${products[i].image}`]
+        });
         
-         const price = await stripe.prices.create({
-           dog: dog.id,
-           unit_amount: dogs[i].price * 100,
-           currency: 'usd',
-         });
-         
-         line_items.push({
-           price: dog.id,
-           quantity: 1,
-         });
-         console.log(line_items)
-       }
-       const session = await stripe.checkout.sessions.create({
-         payment_method_types: ['card'],
-         line_items,
-         mode: 'payment',
-         success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-         cancel_url: `${url}/`
-       });
-       console.log(session)
-       return { session: session.id };
-     }
+        const price = await stripe.prices.create({
+          product: product.id,
+          unit_amount: products[i].price * 100,
+          currency: 'usd',
+        });
+        console.log(product.id)
+
+        line_items.push({
+          price: price.id,
+          quantity: 1
+        });
+        console.log(line_items)
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items,
+        mode: 'payment',
+        success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${url}/`
+      });
+
+      return { session: session.id };
+    }
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -98,10 +99,10 @@ const resolvers = {
 
       return { token, user };
     },
-    addOrder: async (parent, { dogs }, context) => {
+    addOrder: async (parent, { products }, context) => {
       console.log(context);
       if (context.user) {
-        const order = new Order({ dogs });
+        const order = new Order({ products });
 
         await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
 
@@ -117,10 +118,10 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
-    updateDog: async (parent, { _id, quantity }) => {
+    updateProduct: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
-      return await Dog.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
+      return await Product.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
     },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });

@@ -8,9 +8,9 @@ import {
   REMOVE_FROM_CART,
   UPDATE_CART_QUANTITY,
   ADD_TO_CART,
-  UPDATE_DOGS,
+  UPDATE_PRODUCTS,
 } from "../utils/actions";
-import { QUERY_DOGS } from "../utils/queries";
+import { QUERY_PRODUCTS } from "../utils/queries";
 import { idbPromise } from "../utils/helpers";
 import spinner from '../assets/spinner.gif'
 
@@ -18,39 +18,39 @@ function Detail() {
   const [state, dispatch] = useStoreContext();
   const { id } = useParams();
 
-  const [currentDog, setCurrentDog] = useState({});
+  const [currentProduct, setCurrentProduct] = useState({});
 
-  const { loading, data } = useQuery(QUERY_DOGS);
+  const { loading, data } = useQuery(QUERY_PRODUCTS);
 
-  const { dogs, cart } = state;
+  const { products, cart } = state;
 
 
   useEffect(() => {
     // already in global store
-    if (dogs.length) {
-      setCurrentDog(dogs.find(dog => dog._id === id));
+    if (products.length) {
+      setCurrentProduct(products.find(product => product._id === id));
     } 
     // retrieved from server
     else if (data) {
       dispatch({
-        type: UPDATE_DOGS,
-        dogs: data.dogs
+        type: UPDATE_PRODUCTS,
+        products: data.products
       });
 
-      data.dogs.forEach((dog) => {
-        idbPromise('dogs', 'put', dog);
+      data.products.forEach((product) => {
+        idbPromise('products', 'put', product);
       });
     }
     // get cache from idb
     else if (!loading) {
-      idbPromise('dogs', 'get').then((indexedDogs) => {
+      idbPromise('products', 'get').then((indexedProducts) => {
         dispatch({
-          type: UPDATE_DOGS,
-          dogs: indexedDogs
+          type: UPDATE_PRODUCTS,
+          products: indexedProducts
         });
       });
     }
-  }, [dogs, data, loading, dispatch, id]);
+  }, [products, data, loading, dispatch, id]);
 
   console.log(data);
 
@@ -69,9 +69,9 @@ function Detail() {
     } else {
       dispatch({
         type: ADD_TO_CART,
-        dog: { ...currentDog, purchaseQuantity: 1 }
+        product: { ...currentProduct, purchaseQuantity: 1 }
       });
-      idbPromise('cart', 'put', { ...currentDog, purchaseQuantity: 1 });
+      idbPromise('cart', 'put', { ...currentProduct, purchaseQuantity: 1 });
 
     }
   }
@@ -79,47 +79,47 @@ function Detail() {
   const removeFromCart = () => {
     dispatch({
       type: REMOVE_FROM_CART,
-      _id: currentDog._id
+      _id: currentProduct._id
     });
 
-    idbPromise('cart', 'delete', { ...currentDog });
+    idbPromise('cart', 'delete', { ...currentProduct });
   };
 
   return (
     <>
-      {currentDog && cart ? (
+      {currentProduct && cart ? (
         <div className="container wrapper my-1">
           <div className="product-img">
           <img
-            src={`/images/${currentDog.image}`}
-            alt={currentDog.name}
+            src={`/images/${currentProduct.image}`}
+            alt={currentProduct.name}
             height="420" 
             width="327"
           />
           </div>
-          <div class="product-info">
+          <div className="product-info">
             <div className="product-text">
           <Link to="/" id="back-link">
             ← Back to Available Dogs
           </Link>
 
-          <h2 id="dog-name">{currentDog.name}</h2>
+          <h2 id="dog-name">{currentProduct.name}</h2>
 
           <p>
-            {currentDog.description}
+            {currentProduct.description}
           </p>
 
           <p>
             <strong>Breed: </strong>
-            {currentDog.breed}
+            {currentProduct.breed}
             {" "}
             <br />
             <strong>Age: </strong>
-            {currentDog.age} old
+            {currentProduct.age} old
             {" "}
             <br />
             {/* <button 
-              disabled={!cart.find(p => p._id === currentDog._id)} 
+              disabled={!cart.find(p => p._id === currentProduct._id)} 
               onClick={removeFromCart}
             >
               Remove Application
@@ -128,7 +128,7 @@ function Detail() {
           </div>
           <div className="product-price-btn">
             <strong>Application Fee: </strong>
-              ${currentDog.price}
+              ${currentProduct.price}
               {" "}
               <br />
               <button onClick={addToCart}>

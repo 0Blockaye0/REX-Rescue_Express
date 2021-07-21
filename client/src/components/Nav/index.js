@@ -42,7 +42,7 @@ function Nav() {
 
   return (
     <header className="flex-row px-1 custom-header">
-      <div class="header__bg">
+      <div className="header__bg">
       <div className="site-logo">
       <h1>
         <Link to="/">
