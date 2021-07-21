@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { User, Dog, Category } = require('../models');
+const { User, Product, Category } = require('../models');
 
 db.once('open', async () => {
   await Category.deleteMany();
@@ -14,9 +14,9 @@ db.once('open', async () => {
 
   console.log('categories seeded');
 
-  await Dog.deleteMany();
+  await Product.deleteMany();
 
-  const dogs = await Dog.insertMany([
+  const products = await Product.insertMany([
     {
       name: 'Arrow',
       description:
@@ -184,7 +184,7 @@ db.once('open', async () => {
     password: 'password12345',
     applications: [
       {
-        dogs: [dogs[0]._id]
+        products: [products[0]._id]
       }
     ]
   });
