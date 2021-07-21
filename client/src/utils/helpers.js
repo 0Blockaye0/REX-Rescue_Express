@@ -12,7 +12,7 @@ export function idbPromise(storeName, method, object) {
     let db, tx, store;
     request.onupgradeneeded = function(e) {
       const db = request.result;
-      db.createObjectStore('dogs', { keyPath: '_id' });
+      db.createObjectStore('products', { keyPath: '_id' });
       db.createObjectStore('categories', { keyPath: '_id' });
       db.createObjectStore('cart', { keyPath: '_id' });
     };
@@ -23,7 +23,8 @@ export function idbPromise(storeName, method, object) {
 
     request.onsuccess = function(e) {
       db = request.result;
-      tx = db.transaction(storeName, 'readwrite');
+      console.log("this is storename:", storeName)
+      tx = db.transaction(storeName , 'readwrite');
       store = tx.objectStore(storeName);
 
       db.onerror = function(e) {

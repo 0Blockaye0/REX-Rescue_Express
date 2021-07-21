@@ -5,7 +5,7 @@ import { useStoreContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
-function DogDetail(item) {
+function ProductDetail(item) {
   const [state, dispatch] = useStoreContext();
 
   const {
@@ -34,7 +34,7 @@ function DogDetail(item) {
     } else {
       dispatch({
         type: ADD_TO_CART,
-        dog: { ...item, purchaseQuantity: 1 }
+        product: { ...item, purchaseQuantity: 1 }
       });
       idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
     }
@@ -42,7 +42,7 @@ function DogDetail(item) {
 
   return (
     <div className="card px-1 py-1">
-      <Link to={`/dogs/${_id}`}>
+      <Link to={`/products/${_id}`}>
         <div className="imgBx">
         <img
           alt={name}
@@ -60,6 +60,6 @@ function DogDetail(item) {
   );
 }
 
-export default DogDetail;
+export default ProductDetail;
 
 
